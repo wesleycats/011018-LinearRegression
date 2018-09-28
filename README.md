@@ -9,18 +9,31 @@ Wanneer je een specifiek onderdeel wilt uitlichten kun je dat in deze sectie ben
 - [Geprobeerd zo generiek mogelijk te programmeren](https://github.com/wesleycats/PGD/blob/master/PGD%20project/Assets/Scripts/RoomSpawner.cs)
 
 ## Software Anaylse 
-Omdat procedural generation mogelijk is in de meeste bekende engines, maakt het niet echt uit waarin ik te werk zou gaan. Daartentegen zou het wel makkelijk zijn om het in Unity te doen, al was ik met tiles aan de slag gegaan. Ik had voor mijn gevoel makkelijker met code die tiles kunnen pakken van een tilesheet om er een room mee te bouwen bijvoorbeeld.
-
-Ik heb uiteindelijk gekozen voor Unity, omdat ik nog niet eerder met procedural generation heb gewerkt en het wilde leren in een omgeving dat mij op me gemak stelde. En dat doet Unity heel goed.
+Omdat machine learning niet erg makkelijk is, wil ik het in een vertrouwde enviorment doen die dit wel ondersteund. Ik ben erachter gekomen dat Unity zelfs een Machine Learning Agents Toolkit aan biedt. Dit geeft mij de reden om nieteens verder te kijken dan Unity, omdat het al moeilijk genoeg is om Machine Learning zelf te leren. Ik weet ook dat je met behulp van C# library Math.NET Numerics, matrixen kan maken die mij verder kunnen helpen bij dit project.
 
 ## Leerdoelen 
-Wat wil je bereiken met dit project? Formuleer dit kort, krachtig en haalbaar.
-- Een basiskennis opbouwen van procedural generation
-- Meer generieke scripts / classes schrijven
+- Ik wil leren hoe ik een simpele auto met behulp van een neural network, zelf kan laten rijden
+- Ik wil meer leren over matrixen
+- Ik wil meer leren over hoe wij als mensen leren
 
 ## Planning 
-Ik heb niet met een planning gewerkt, maar elke keer doorgewerkt vanaf waar ik was gebleven.
+Week1:
+Maandag - Onderzoek doen en misschien al beginnen met de basis
+Dinsdag -
+Woensdag -
+Donderdag - 
+Vrijdag - 
+Zaterdag - 
+Zondag -
 
+Week2
+Maandag - 
+Dinsdag -
+Woensdag -
+Donderdag - 
+Vrijdag - 
+Zaterdag - 
+Zondag -
 ## Bronnen
 Welke bronnen heb je gebruikt? Zowel youtube filmpjes als artikelen
 
