@@ -8,7 +8,12 @@
   <title>MachineLearning</title>
 </head>
 <body>
-
-<script src="script.js"></script>
+  <script src="lib/Line.js"></script>
+  <script src="lib/Point.js"></script>
+  <script src="script.js"></script>
+  <p id="coefficient"><b>correlation coefficient = </b><p>
+  <p>Enter amount of random points to spawn:</p>
+  <input id="amount" type="text" name="points" value="" placeholder="amount">
+  <button type="button" name="spawn" onclick="SpawnRandomPoints(document.getElementById('amount').value)">Spawn</button>
 </body>
 </html>

@@ -7,7 +7,10 @@ This project is my first attempt to create machine learning cars in Unity.
 - [titel](link)
 
 ## Software Anaylse 
-Omdat machine learning niet erg makkelijk is, wil ik het in een vertrouwde enviorment doen die dit wel ondersteund. Ik ben erachter gekomen dat Unity zelfs een Machine Learning Agents Toolkit aan biedt. Maar ik weet ook dat je met behulp van C# library Math.NET Numerics, matrixen kan maken die mij verder kunnen helpen bij dit project. Dit geeft mij de reden om nieteens verder te kijken dan Unity, omdat het al moeilijk genoeg is om Machine Learning zelf te leren. 
+Omdat machine learning niet erg makkelijk is, wil ik het in een vertrouwde enviorment doen die dit wel ondersteund. Ik ben erachter gekomen dat Unity zelfs een Machine Learning Agents Toolkit aan biedt. Maar ik weet ook dat je met behulp van C# library Math.NET Numerics, matrixen kan maken die mij verder kunnen helpen bij dit project. Dit geeft mij de reden om voor Unity te kiezen.
+
+update 05-10-18:
+Ik ben erachter gekomen dat ik machine learning met linear regression ook in javascript kan maken, waardoor ik het wat simpeler en overzichtelijker hou voor mezelf.
 
 ## Leerdoelen 
 - Ik wil leren hoe ik een simpele auto met behulp van een neural network, zelf kan laten rijden

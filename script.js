@@ -1,171 +1,158 @@
-// Compares the average hours the students went to school in a week, with their average grade at the end of the school year
-//
-//
+const canvas = document.createElement("canvas");
+canvas.width = 600;
+canvas.height = 600;
+const context = canvas.getContext('2d');
+document.body.appendChild(canvas);
 
-// training set. [hours, grade, color(0=blue and 1=red)]
-    var data1 = [10, 4.6];
-    var data2 = [15, 6.5];
-    var data3 = [20, 7.5];
-    var data4 = [21, 7.5];
-    var data5 = [20, 8.5];
-    var data6 = [16, 6];
-    var data7 = [18, 5];
-    var data8 = [19, 9];
+var allPoints = [];
+var pointSize = 5;
 
-    var all_points = [data1, data2, data3, data4, data5, data6, data7, data8];
+function xSum(array) {
+  let xSum = 0;
+  for (let i = 0; i < array.length; i++)
+  {
+    xSum += array[i].x;
+  }
+  return xSum;
+}
 
-    var l; // the prediction line
+function ySum(array) {
+  let ySum = 0;
+  for (let i = 0; i < array.length; i++)
+  {
+    ySum += array[i].y;
+  }
+  return ySum;
+}
 
-    // slope = (average)y - b(average)x
+function xySum(array) {
+  let xySum = 0;
+  for (let i = 0; i < array.length; i++)
+  {
+    let x = array[i].x;
+    let y = array[i].y;
+    xySum += (x * y);
+  }
+  return xySum;
+}
 
-    function sigmoid(x) {
-      return 1/(1+Math.exp(-x));
+function xSquaredSum(array) {
+  let xSquaredSum = 0;
+  for (let i = 0; i < array.length; i++)
+  {
+    xSquaredSum += (array[i].x * array[i].x);
+  }
+  return xSquaredSum;
+}
+
+function ySquaredSum(array) {
+  let ySquaredSum = 0;
+  for (let i = 0; i < array.length; i++)
+  {
+    ySquaredSum += (array[i].y * array[i].y);
+  }
+  return ySquaredSum;
+}
+
+function getSlope(array) {
+  return ((array.length * xySum(array) - (xSum(array) * ySum(array))) / ((array.length * xSquaredSum(array)) - (xSum(array) * xSum(array))));
+}
+
+function getYIntercept(array) {
+  return ((((xSquaredSum(array) * ySum(array))) - ((xSum(array)) * xySum(array))) / ((array.length * xSquaredSum(array)) - (xSum(array) * xSum(array))));
+}
+
+function getCoefficient(array) {
+  return ((((array.length * xySum(array) - xSum(array) * ySum(array)) * (array.length * xySum(array) - xSum(array) * ySum(array))) / (((array.length * xSquaredSum(array)) - (xSum(array) * xSum(array))) * ((array.length * ySquaredSum(array)) - (ySum(array) * ySum(array))))));
+}
+
+function OnClick(event) {
+  // returns when out of bounds
+  if (event.clientX > canvas.width || event.clientX < 0 || event.clientY > canvas.height || event.client < 0) return;
+
+  // removes a point if clicked mouse position is equal
+  for (let i = 0; i < allPoints.length; i++) {
+    if (event.clientX == allPoints[i].x && event.clientY == allPoints[i].y) {
+      allPoints.splice(i, 1);
+      return;
     }
+  }
 
-    // training
-    function train() {
-      let w1 = Math.random()*.2-.1;
-      let w2 = Math.random()*.2-.1;
-      let b = Math.random()*.2-.1;
-      let learning_rate = 0.2;
-      for (let iter = 0; iter < 50000; iter++) {
-        // pick a random point
-        let random_idx = Math.floor(Math.random() * all_points.length);
-        let point = all_points[random_idx];
-        let target = 1; // how correct the line is to a point
+  // spawns new point
+  let point = new Point(event.clientX, event.clientY, pointSize);
+  allPoints.push(point);
+}
 
-        // feed forward
-        let z = w1 * point[0] + w2 * point[1] + b;
-        let pred = sigmoid(z);
+function OnKeyDown(event) {
+  // clears everything if spacebar is pressed
+  if (event.keyCode == 32) {
+    allPoints = [];
+  }
+}
 
-        // now we compare the model prediction with the target
-        let cost = (pred - target) ** 2;
+function SpawnRandomPoints(amount) {
+  for (let i = 0; i < amount; i++) {
+    let point = new Point(Math.random() * canvas.width, Math.random() * canvas.height, pointSize);
+    allPoints.push(point);
+    document.getElementById('amount').value = 0;
+  }
+}
 
-        // now we find the slope of the cost w.r.t. each parameter (w1, w2, b)
-        // bring derivative through square function
-        let dcost_dpred = 2 * (pred - target);
+// map points from graph coordinates to the screen
+let graph_size = {width: 10, height: 10};
+function to_screen(x, y) {
+  return {x: (x/graph_size.width)*canvas.width, y: -(y/graph_size.height)*canvas.height + canvas.height};
+}
 
-        // bring derivative through sigmoid
-        // derivative of sigmoid can be written using more sigmoids! d/dz sigmoid(z) = sigmoid(z)*(1-sigmoid(z))
-        let dpred_dz = sigmoid(z) * (1-sigmoid(z));
+// map points from screen coordinates to the graph
+function to_graph(x, y) {
+  return {x: x/canvas.width*graph_size.width, y: graph_size.height - y/canvas.height*graph_size.height};
+}
 
-        // I think you forgot these in your slope calculation?
-        let dz_dw1 = point[0];
-        let dz_dw2 = point[1];
-        let dz_db = 1;
+// draw the graph's grid lines
+function draw_grid() {
+  context.strokeStyle = "#AAAAAA";
+  for (let j = 0; j <= graph_size.width; j++) {
 
-        // now we can get the partial derivatives using the chain rule
-        // notice the pattern? We're bringing how the cost changes through each function, first through the square, then through the sigmoid
-        // and finally whatever is multiplying our parameter of interest becomes the last part
-        let dcost_dw1 = dcost_dpred * dpred_dz * dz_dw1;
-        let dcost_dw2 = dcost_dpred * dpred_dz * dz_dw2;
-        let dcost_db =  dcost_dpred * dpred_dz * dz_db;
+    // x lines
+    context.beginPath();
+    let p = to_screen(j, 0);
+    context.moveTo(p.x, p.y);
+    p = to_screen(j, graph_size.height);
+    context.lineTo(p.x, p.y);
+    context.stroke();
 
-        l =
+    // y lines
+    context.beginPath();
+    p = to_screen(0, j);
+    context.moveTo(p.x, p.y);
+    p = to_screen(graph_size.width, j);
+    context.lineTo(p.x, p.y);
+    context.stroke();
+  }
+}
 
-        // now we update our parameters!
-        w1 -= learning_rate * dcost_dw1;
-        w2 -= learning_rate * dcost_dw2;
-        b -= learning_rate * dcost_db;
-      }
+setInterval(function () {
+  context.clearRect(0,0,canvas.width,canvas.height);
+  update();
+}, 10);
 
-      return {w1: w1, w2: w2, b: b};
-    }
+function update() {
+  // updates the coefficient
+  coefficient = document.getElementById('coefficient').innerHTML = "<b>correlation coefficient = </b>" + getCoefficient(allPoints);
 
-    let canvas = document.createElement("canvas");
-    canvas.width = 400;
-    canvas.height = 400;
-    document.body.appendChild(canvas);
-    let ctx = canvas.getContext("2d");
-    ctx.font = "Helvetica";
+  // creates the prediction line
+  let l = new Line(getSlope(allPoints), getYIntercept(allPoints));
 
-    // map points from graph coordinates to the screen
-    let graph_size = {width: 30, height: 10};
-    function to_screen(x, y) {
-      return {x: (x/graph_size.width)*canvas.width, y: -(y/graph_size.height)*canvas.height + canvas.height};
-    }
+  // draws all points
+  for (let i = 0; i < allPoints.length; i++)
+  {
+    allPoints[i].draw();
+  }
+  draw_grid();
+  l.draw();
+}
 
-    // map points from screen coordinates to the graph
-    function to_graph(x, y) {
-      return {x: x/canvas.width*graph_size.width, y: graph_size.height - y/canvas.height*graph_size.height};
-    }
-
-    // draw the graph's grid lines
-    function draw_grid() {
-      ctx.strokeStyle = "#AAAAAA";
-      for (let j = 0; j <= graph_size.width; j++) {
-
-        // x lines
-        ctx.beginPath();
-        let p = to_screen(j, 0);
-        ctx.moveTo(p.x, p.y);
-        p = to_screen(j, graph_size.height);
-        ctx.lineTo(p.x, p.y);
-        ctx.stroke();
-
-        // y lines
-        ctx.beginPath();
-        p = to_screen(0, j);
-        ctx.moveTo(p.x, p.y);
-        p = to_screen(graph_size.width, j);
-        ctx.lineTo(p.x, p.y);
-        ctx.stroke();
-      }
-    }
-
-    // draw points
-    function draw_points() {
-        // draw points
-        ctx.fillStyle = "#000000";
-        for (let j = 0; j < all_points.length; j++) {
-          let point = all_points[j];
-          p = to_screen(point[0], point[1]);
-          ctx.fillRect(p.x-2, p.y-2, 4, 4);
-        }
-    }
-
-    // visualize model output on grid of points
-    function visualize_params(params) {
-      ctx.save();
-      ctx.globalAlpha = 0.2;
-      let step_size = .1;
-      let box_size = canvas.width/(graph_size.width/step_size);
-
-      /*for (let xx = 0; xx < graph_size.width; xx += step_size) {
-        for (let yy = 0; yy < graph_size.height; yy += step_size) {
-          let model_out = sigmoid( xx * params.w1 + yy * params.w2 + params.b );
-          if (model_out < .5) {
-            // blue
-            ctx.fillStyle = "#0000FF";
-          } else {
-            // red
-            ctx.fillStyle = "#FF0000";
-          }
-          let p = to_screen(xx, yy);
-          ctx.fillRect(p.x, p.y, box_size, box_size);
-        }
-      }*/
-      ctx.restore();
-    }
-
-    // find parameters
-    var params = train();
-
-    // visualize model output
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    draw_grid();
-    draw_points();
-    visualize_params(params);
-
-    // say what the model would say for a given mouse position
-    window.onmousemove = function(evt) {
-      ctx.clearRect(0, 0, 100, 50);
-
-      let p = {x: 10, y: 10};
-
-      let mouse = {x: evt.offsetX, y: evt.offsetY};
-      let mouse_graph = to_graph(mouse.x, mouse.y);
-
-      ctx.fillText("x: " + Math.round(mouse_graph.x*100)/100, p.x, p.y);
-      ctx.fillText("y: " + Math.round(mouse_graph.y*100)/100, p.x, p.y + 10);
-    }
+// checks for user input
+document.addEventListener("click", OnClick);
+document.addEventListener("keydown", OnKeyDown)
