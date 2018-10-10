@@ -10,7 +10,7 @@ This project is my first attempt to create a program using machine learning.
 Because machine learning is not so easy, I would like to work with it in a known enviorment that supports it.
 
 update 03-10-18: 
-I know that Python is the go-to machine learning languagel, because of the libraries like: Tensorflor, Numpy, Keras, etc. But because I only have 2 weeks and are new to machine learning, I won't make it harder as possible for me.
+I know that Python is the go-to machine learning languagel, because of the libraries like: Tensorflow, Numpy, Keras, etc. But because I only have 2 weeks and are new to machine learning, I won't make it harder as possible for me.
 
 update 04-10-18:
 I just found out that Unity even offers a Machine Learning Agents Toolkit. Additionally I know I could use C# library Math.NET Numerics to make a neural network with the help of matrices. Because of these reasons, Unity has a big chance to be the enviorment I will work with.
