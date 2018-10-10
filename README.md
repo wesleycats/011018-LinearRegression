@@ -29,6 +29,7 @@ Weekend before week 1: Doing research (What is machine learning and what can it 
 
 Week 1:
 Monday - Research (What is machine learning and what can it be used for?)
+
 Tuesday - Research (What is machine learning and what can it be used for?)
 Wednesday - Research (In which languages can you use machine learning?)
 Thursday - Research (In which languages can you use machine learning?)
