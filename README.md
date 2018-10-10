@@ -36,7 +36,7 @@ Vrijdag - Het hele machine learning / linear regression programma in javascript 
 Zaterdag - x
 Zondag - x
 
-Week2
+Week2:
 Maandag - Het programma polishen (user-friendly maken)
 Dinsdag - Het programma op mijn portfolio zetten
 Woensdag - Code inleveren
