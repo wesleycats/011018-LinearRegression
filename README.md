@@ -7,16 +7,16 @@ This project is my first attempt to create a program using machine learning.
 - [Linear Regression](https://github.com/wesleycats/MachineLearning/blob/Develop/Linear%20Regression/script.js)
 
 ## Software Anaylse 
-update 03-10-18:
 Omdat machine learning niet erg makkelijk is, wil ik het in een vertrouwde enviorment doen die dit wel ondersteund. 
 
+update 03-10-18: 
 Ik weet dat Python de go-to machine learning language is door al de libraries zoals; Tensorflow, Numpy, Keras, maar omdat ik maar 2 weken heb en ik nieuw met machine learning ben, wil ik het niet moeilijker maken voor mijzelf dan kan.
 
 update 04-10-18:
 Ik ben erachter gekomen dat Unity zelfs een Machine Learning Agents Toolkit aan biedt. Maar ik weet ook dat je met behulp van C# library Math.NET Numerics, matrixen kan maken die mij verder kunnen helpen bij dit project. Dit geeft mij de reden om voor Unity te kiezen.
 
 update 05-10-18:
-Vanaf vandaag weet ik, dat ik machine learning met linear regression ook in javascript kan maken, waardoor ik het wat simpeler en overzichtelijker hou voor mezelf. Ik kies er nu dan ook voor om dit eerst in javascript te maken en als ik tijd over hou, een game ermee te maken in Unity. Ik wil dit doen in Unity, omdat ik al een kleine setup heb voor een game waarin dit gemakkelijk geïmplementeerd kan worden.
+Vanaf vandaag weet ik, dat ik machine learning met linear regression ook in javascript kan maken, waardoor ik het wat simpeler en overzichtelijker hou voor mezelf. Ik kies er nu dan ook voor om dit eerst in javascript te maken en als ik tijd over hou, een game ermee te maken in Unity. Ik wil dit doen in Unity, omdat ik al een kleine setup heb voor een game waarin dit gemakkelijk geÃ¯mplementeerd kan worden.
 
 ## Leerdoelen 
 - Ik wil leren hoe machine learning simpel werkt, zodat ik er meer mee kan doen
