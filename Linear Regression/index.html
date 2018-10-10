@@ -8,12 +8,29 @@
   <title>MachineLearning</title>
 </head>
 <body>
+  <canvas id="canvas" width="600" height="600"></canvas>
+  <div class="info-holder">
+    <div class="info">
+      <div class="precise">
+        <p><b>Precise point spawn:</b></p>
+        <input id="precise-amount" class="input" type="text" name="position" value="," placeholder="x,y">
+        <button type="button" name="spawn" onclick="SpawnPrecisePoint(document.getElementById('precise-amount').value)">Spawn</button>
+      </div>
+      <div class="random">
+        <p><b>Random point spawn:</b></p>
+        <input id="random-amount" type="text" name="points" value="0" placeholder="amount">
+        <button type="button" name="spawn" onclick="SpawnRandomPoints(document.getElementById('random-amount').value)">Spawn</button>
+      </div>
+      <br><br>
+      <h3 id="coefficient"><b>correlation coefficient = </b></h3>
+      <h3 id="mouse-pos">Mouse position: </h3>
+      <p><b>Hotkeys:</b> <br>
+          <i>X</i> = undo last placed node <br>
+          <i>Spacebar</i> = reset</p>
+    </div>
+  </div>
   <script src="lib/Line.js"></script>
   <script src="lib/Point.js"></script>
   <script src="script.js"></script>
-  <p id="coefficient"><b>correlation coefficient = </b><p>
-  <p>Enter amount of random points to spawn:</p>
-  <input id="amount" type="text" name="points" value="" placeholder="amount">
-  <button type="button" name="spawn" onclick="SpawnRandomPoints(document.getElementById('amount').value)">Spawn</button>
 </body>
 </html>
