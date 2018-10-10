@@ -27,7 +27,7 @@ Since today I know that I can use Javascript aswell. This way I can keep it as s
 ## Planning 
 Weekend before week 1: Doing research (What is machine learning and what can it be used for?)
 
-Week 1:
+*Week 1:*
 
 Monday - Research (What is machine learning and what can it be used for?)
 
@@ -42,7 +42,7 @@ Friday - Research / Writing the whole program in Javascript, HTML and CSS (Becau
 Saturday - x
 Sunday - x
 
-Week 2:
+*Week 2:*
 
 Monday - Polish the program (make it user-friendly)
 
