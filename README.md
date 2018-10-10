@@ -28,20 +28,30 @@ Since today I know that I can use Javascript aswell. This way I can keep it as s
 Weekend before week 1: Doing research (What is machine learning and what can it be used for?)
 
 Week 1:
+
 Monday - Research (What is machine learning and what can it be used for?)
 
 Tuesday - Research (What is machine learning and what can it be used for?)
+
 Wednesday - Research (In which languages can you use machine learning?)
+
 Thursday - Research (In which languages can you use machine learning?)
+
 Friday - Research / Writing the whole program in Javascript, HTML and CSS (Because of all the research, I can easily write the whole program in a day)
+
 Saturday - x
 Sunday - x
 
 Week 2:
+
 Monday - Polish the program (make it user-friendly)
+
 Tuesday - Put the program on portfolio
+
 Wednesday - Hand in code
+
 Thursday - Make reflection
+
 Friday - Hand in reflection
 
 ## Sources
