@@ -7,7 +7,8 @@ var rect = canvas.getBoundingClientRect();
 var allPoints = [];
 var pointSize = 5;
 var randomAmountLimit = 300;
-var parameters, xParameter, yParameter;
+var parameters, xParameter, yParameter, l;
+var debug = true;
 
 function xSum(array) {
   let xSum = 0;
@@ -65,7 +66,8 @@ function getYIntercept(array) {
 }
 
 function getCoefficient(array) {
-  return ((((array.length * xySum(array) - xSum(array) * ySum(array)) * (array.length * xySum(array) - xSum(array) * ySum(array))) / (((array.length * xSquaredSum(array)) - (xSum(array) * xSum(array))) * ((array.length * ySquaredSum(array)) - (ySum(array) * ySum(array))))));
+  return ((((array.length * xySum(array) - xSum(array) * ySum(array)) * (array.length * xySum(array) - xSum(array) * ySum(array))) / (((array.length * xSquaredSum(array)) - (xSum(array) * xSum(array)))
+  * ((array.length * ySquaredSum(array)) - (ySum(array) * ySum(array))))));
 }
 
 function OnClick(event) {
@@ -118,19 +120,15 @@ function OnMouseMove(event) {
 function SpawnRandomPoints(amount) {
   if (!amount) return;
 
+  // spawns amount of random points
   for (let i = 0; i < amount; i++) {
     let point = new Point(Math.floor((Math.random() * rect.right) + rect.left), Math.floor((Math.random() * rect.bottom) + rect.top), pointSize);
     allPoints.push(point);
-    randomAmount.value = "";
   }
 }
 
 function SpawnPrecisePoint(position) {
   if (!position) return;
-
-  position = preciseAmount.value.split(",");
-  xParameter = parameters[0];
-  yParameter = parameters[1];
 
   let point = new Point(xParameter, yParameter, pointSize);
   allPoints.push(point);
@@ -192,15 +190,15 @@ function RemoveSpaces(input) {
 }
 
 function isOnCanvas(input, axis) {
-  if (input < 0)
+  if (input <= 0)
   {
     return 0;
   }
-  else if (input > canvas.width && axis == "x")
+  else if (input >= canvas.width && axis == "x")
   {
     return canvas.width;
   }
-  else if (input > canvas.height && axis == "y")
+  else if (input >= canvas.height && axis == "y")
   {
     return canvas.height;
   }
@@ -209,8 +207,6 @@ function isOnCanvas(input, axis) {
 }
 
 function update() {
-  // updates the coefficient
-  coefficient = document.getElementById('coefficient').innerHTML = "<b>Correlation Coefficient = </b>" + parseFloat((getCoefficient(allPoints)).toFixed(5));
 
   preciseAmount.value = RemoveSpaces(preciseAmount.value);
   randomAmount.value = RemoveSpaces(randomAmount.value);
@@ -236,8 +232,15 @@ function update() {
     randomAmount.value = randomAmountLimit;
   }
 
-  // creates the prediction line
-  let l = new Line(getSlope(allPoints), getYIntercept(allPoints));
+  if (allPoints.length > 1)
+  {
+    // updates the coefficient
+    coefficient = document.getElementById('coefficient').innerHTML = "<b>Correlation Coefficient = </b>" + parseFloat((getCoefficient(allPoints)).toFixed(5));
+
+    // creates the prediction line
+    l = new Line(getSlope(allPoints), getYIntercept(allPoints));
+  }
+
 
   // draws all points
   for (let i = 0; i < allPoints.length; i++)
@@ -245,6 +248,7 @@ function update() {
     allPoints[i].draw();
   }
   draw_grid();
+  if (l == null) return;
   l.draw();
 }
 

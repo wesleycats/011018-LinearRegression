@@ -18,7 +18,7 @@ class Point {
     context.font = "20px Arial";
     context.fillText(this.label,this.x-this.r/2,this.y-this.r);
   }
-  
+
   drag() {
     let drag = false;
     let mousePosition = {};

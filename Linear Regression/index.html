@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="/css/master.css">
+  <link rel="stylesheet" href="css/style.css">
   <title>MachineLearning</title>
 </head>
 <body>
@@ -13,7 +13,7 @@
     <div class="info">
       <div class="precise">
         <p><b>Precise point spawn:</b></p>
-        <input id="precise-amount" class="input" type="text" name="position" value="," placeholder="x,y">
+        <input id="precise-amount" class="input" type="text" name="position" value="" placeholder="x,y">
         <button type="button" name="spawn" onclick="SpawnPrecisePoint(document.getElementById('precise-amount').value)">Spawn</button>
       </div>
       <div class="random">
@@ -29,8 +29,8 @@
           <i>Spacebar</i> = reset</p>
     </div>
   </div>
-  <script src="lib/Line.js"></script>
   <script src="lib/Point.js"></script>
+  <script src="lib/Line.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
