@@ -18,12 +18,13 @@ public class Info : MonoBehaviour {
 	void Update () {
 		generation.text = "GENERATION: " + gameManager.generationNumber;
 		
-		// Itterates over all enemys and adds their fitness to the list
+		// Itterates over all enemies and adds their fitness to the list
 		for (int i = 0; i < gameManager.enemyList.Count; i++)
 		{
 			allFitness.Add(gameManager.enemyList[i].net.fitness);
 		}
 		
+		// Changes text to top fitness
 		if (allFitness.Count > 0)
 		{
 			allFitness.Sort();

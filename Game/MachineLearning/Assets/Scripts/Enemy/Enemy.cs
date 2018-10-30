@@ -15,9 +15,8 @@ public class Enemy : MonoBehaviour
 	{
 		rBody = GetComponent<Rigidbody2D>();
 		mats = new Material[1];
-		mats[0] = transform.GetChild(0).GetComponent<Renderer>().material;
-		/*for (int i = 0; i < mats.Length; i++)
-			mats[i] = transform.GetChild(i).GetComponent<Renderer>().material;*/
+		for (int i = 0; i < mats.Length; i++)
+			mats[i] = transform.GetChild(i).GetComponent<Renderer>().material;
 	}
 
 	void FixedUpdate()
