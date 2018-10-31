@@ -1,7 +1,5 @@
-*Let goed bij het maken, schrijven en bijhouden van dit document op de **[prestatie-indicatoren](https://drive.google.com/drive/folders/1y8l0Zr4E8b6gYJui_pSzQaoWr-gEr6JN?usp=sharing)**. Deze toon je aan in dit document.*
-
-# MachineLearning
-This project is my first attempt to create a program using machine learning.
+# Linear Regression
+This project is my first attempt to create a program that uses linear regression by machine learning.
 
 ## Features
 - [Linear Regression](https://github.com/wesleycats/MachineLearning/blob/Develop/Linear%20Regression/script.js)
